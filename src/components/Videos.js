@@ -18,7 +18,7 @@ const Videos = ({ name, warningDelete, closeWaringDelete, showMenuItems, coverCa
 
   var videoCam;
   var adjustPanoramic;
-  console.log("-------------------------------------------------> " + name.panoramic);
+
   if (name.cameraType === "static") {
 
     if (name.panoramic === "Expand-Full") {
@@ -26,7 +26,7 @@ const Videos = ({ name, warningDelete, closeWaringDelete, showMenuItems, coverCa
         adjustPanoramic = "adjust-panoramic";
 
     }else if (name.panoramic === "Expand-half") {
-        videoCam = <img src={ name.url } alt="Loading..." className={`video_stream video_streamJPG panoramic pnc${name.id}`} />;
+        videoCam = <img src={ name.url } alt="Loading..." className={`video_stream video_streamJPG panoramic pncHa${name.id}`} />;
         adjustPanoramic = "adjust-panoramic-medium";
 
     }else {
@@ -77,11 +77,6 @@ const Videos = ({ name, warningDelete, closeWaringDelete, showMenuItems, coverCa
           </div>
         </button>
 
-        <button className={`menuCameraItem menuCameraItem${name.id} display-none`}>
-          <div className="cameraIconButtons zoomInCameraButton">
-              <img src={ zoomInIcon } alt="expand" className="cameraImgIcons zoomInCameraButtonIcon" />
-          </div>
-        </button>
 
         <button className={`menuCameraItem menuCameraItem${name.id} display-none`} onClick={() => {coverCamera(name.id)}}>
           <div className="cameraIconButtons coverCameraButton">
@@ -89,11 +84,6 @@ const Videos = ({ name, warningDelete, closeWaringDelete, showMenuItems, coverCa
           </div>
         </button>
 
-        <button className={`menuCameraItem menuCameraItem${name.id} display-none`}>
-          <div className="cameraIconButtons expandCameraButton">
-              <img src={ expandIcon } alt="expand" className="cameraImgIcons expandCameraButtonIcon" />
-          </div>
-        </button>
 
       <button className="menuCameraItem" onClick={() => {showMenuItems(name.id)}}>
         <div className={`cameraIconButtons menuVideoCameraButton menuVideoCameraButton${name.id}`}>

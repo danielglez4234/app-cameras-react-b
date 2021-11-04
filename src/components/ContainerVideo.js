@@ -54,6 +54,9 @@ class ContainerVideo extends Component {
       if ($(".pnc" + id).hasClass("panoramic")) {
         $('.rep_prub' + id).toggleClass('adjust-panoramic');
       }
+      if ($(".pncHa" + id).hasClass("panoramic")) {
+        $('.rep_prub' + id).toggleClass('adjust-panoramic-medium');
+      }
     }
 
     showMoreInfo = (id) =>{

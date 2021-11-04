@@ -39,42 +39,42 @@ class Nav extends Component {
             </a>
           </li>
 
-            <li>
+            {/*<li>
               <a href="/list">
                 <i className="fa fa-list-ul fa-lg menuNav-icon"></i>
                 <span className="nav-text"> Show All </span>
               </a>
-            </li>
+            </li>*/}
 
-            <li className="darkerli darkerlishadow">
+            <li>
               <a href="/create">
                 <i className="bx bxs-add-to-queue menuNav-icon bx-menu-icons"></i>
                 <span className="nav-text"> Add New Camera </span>
               </a>
             </li>
 
-            <li className="darkerli darkerlishadowdown">
+            <li>
               <button className="menu-nav-button" onClick={() => {this.showEditDelteButtons()}}>
                 <i className="bx bxs-edit menuNav-icon bx-menu-icons"></i>
                 <span className="nav-text menu-nav-button-text"> Edit </span>
               </button>
             </li>
 
-            <li>
+            {/*<li>
               <button className="menu-nav-button">
                 <i className="fa fa-filter fa-lg menuNav-icon bx-menu-icons adjust-filter-icon"></i>
                 <span className="nav-text menu-nav-button-text transform-uppercase adjust-filter-text"> Filter </span>
               </button>
-            </li>
+            </li>*/}
 
           </ul>
           <ul className="ulBottom">
-            <li className="logout">
+{ /*           <li className="logout">
               <a href="#">
                 <i className="bx bxs-user menuNav-icon bx-menu-icons"></i>
                 <span className="nav-text"> Log in </span>
               </a>
-            </li>
+            </li>*/}
           </ul>
         </div>
       </nav>

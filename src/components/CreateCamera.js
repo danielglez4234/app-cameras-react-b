@@ -108,7 +108,7 @@ class CreateCamera extends Component {
 
 
   staticChecked = () => {
-    if ($("#Stream").is(':checked')) {
+    if ($("#static").is(':checked')) {
       $(".kurentoprocess").removeClass("displayInlineBlock cont-input").addClass("display-none");
 
     }else {

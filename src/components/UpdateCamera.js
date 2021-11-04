@@ -137,11 +137,13 @@ class UpdateCamera extends Component {
   IfStaticIsChecked = () => {
     if ($("#static").is(':checked')) {
       $(".panoramicInput").removeClass("display-none-expand").addClass("displayInlineBlock");
+      $(".kurentoprocess").removeClass("displayInlineBlock cont-input").addClass("display-none");
       if ($("#panoramic").is(':checked')) {
         $(".select-panoramic").removeClass("display-none-expand");
       }
     }else {
       $(".panoramicInput").removeClass("displayInlineBlock").addClass("display-none-expand");
+      $(".kurentoprocess").removeClass("display-none").addClass("cont-input displayInlineBlock");
       $(".select-panoramic").addClass("display-none-expand");
       $('.select-panoramic option:eq(3)').prop('selected', true);
     }
@@ -150,11 +152,13 @@ class UpdateCamera extends Component {
   streamCheckedHidePanoramic = () => {
     if ($("#static").is(':checked')) {
       $(".panoramicInput").removeClass("display-none-expand").addClass("displayInlineBlock");
+
       if ($("#panoramic").is(':checked')) {
         $(".select-panoramic").removeClass("display-none-expand");
       }
     }else {
       $(".panoramicInput").removeClass("displayInlineBlock").addClass("display-none-expand");
+
       $(".select-panoramic").addClass("display-none-expand");
       $('.select-panoramic option:eq(3)').prop('selected', true);
     }
@@ -385,14 +389,14 @@ class UpdateCamera extends Component {
 
         <br />
 
-        <div className="cont-input displayInlineBlock">
+        <div className="kurentoprocess cont-input displayInlineBlock">
           <label htmlFor="recordImages" className="omrs-input-underlined">
             <input id="recordImages" defaultChecked={this.state.camera.kurentoConfig.value.recorder} type="checkbox" name="recordImages" className="width-input-1 credentials-input" />
             <span className="input-label-checkCredentials"> Record images </span>
           </label>
         </div>
         <br />
-        <div className="cont-input displayInlineBlock">
+        <div className="kurentoprocess cont-input displayInlineBlock">
           <label htmlFor="processImages" className="omrs-input-underlined">
             <input id="processImages" defaultChecked={this.state.camera.kurentoConfig.value.carDetection} type="checkbox" name="processImages" className="width-input-1 credentials-input" />
             <span className="input-label-checkCredentials"> Process images </span>
