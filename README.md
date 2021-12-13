@@ -10,11 +10,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+Once downloaded run this command in the parent directory to install all the dependencies:
+
+### npm install
+
 In the project directory, you can run:
-
-### `npm install`
-
-Install all dependencies.
 
 ### `npm start`
 
