@@ -1,125 +1,206 @@
-import React, { Component }   from 'react';
-// import { NavLink } from 'react-router-dom';
+import React, { useState }  from 'react';
+import { Consumer }           from './context';
 import * as $                 from 'jquery';
+
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import Tooltip from '@mui/material/Tooltip';
+
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
+import ModeEditRoundedIcon from '@mui/icons-material/ModeEditRounded';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import logoSrc                from '../img/logo.png';
 
-class Nav extends Component {
+function Nav(){
 
-  render(){
-    return(
+   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-      <div>
-        <div className="showOrHideButton-div">
-          <a onClick={ this.hideNavBar } className="button-hideNavBar">
-            <i className="fa fa-angle-left fa-lg"></i>
-          </a>
-          <a onClick={ this.expandNavBar } className="button-expandNavBar">
-            <i className="fa fa-angle-double-right fa-lg"></i>
-          </a>
-        </div>
-        <div onClick={ this.unExpandNavArea } className="unExpandNavArea"></div>
-      <nav id="navBar" className="main-menu">
+   const handleMobileMenuClose = () => {
+     setMobileMoreAnchorEl(null);
+   };
 
-        <div className="box-logo">
-          <a href="/" className="box-logo-content">
-            <img className="box-logo-icon" src={ logoSrc } alt="Gran Telescopio de Canarias" />
-            <span className="box-logo-text"> GRANTECAN </span>
+   const handleMenuClose = () => {
+     handleMobileMenuClose();
+   };
+
+   const handleMobileMenuOpen = (event) => {
+     setMobileMoreAnchorEl(event.currentTarget);
+   };
+
+   const showLogInInputs = () => {
+     $('.logIn-cont').fadeIn(100);
+     $('.logIn-AreaClose').fadeIn(100);
+   }
+
+
+   const showEditDeleteButtons = () =>{
+     $(".deleteUpdate-cameraButtons-box").toggleClass('show-deleteUpdate-camerabuttons');
+   }
+
+   const hideNavBar = () => {
+     $("#navBar").toggle("display-none");
+   }
+
+
+
+  return(
+   <Consumer>
+    { context => {
+    const loggedIn = context.loggedIn;
+    const logOut = context.logOut;
+
+
+    const renderMobileMenu = (
+      <Menu
+        anchorEl={mobileMoreAnchorEl}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        id="primary-search-account-menu-mobile"
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={isMobileMenuOpen}
+        onClose={handleMobileMenuClose}
+      >
+
+      {(loggedIn) ?
+       <div>
+        <MenuItem>
+          <a href="/create" className="mobile-menu-a">
+            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+             <AddBoxRoundedIcon />
+            </IconButton>
+            <p className="mobileText-menu mobile-menu-aTEXT">Add Camera</p>
           </a>
+        </MenuItem>
+        <MenuItem onClick={() => {showEditDeleteButtons()}}>
+          <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
+           <ModeEditRoundedIcon />
+          </IconButton>
+          <p className="mobileText-menu">Edit Camera</p>
+        </MenuItem>
+        <MenuItem onClick={() => {logOut()}}>
+          <a href="/" className="mobile-menu-a">
+            <IconButton size="large" aria-label="account of current user" aria-controls="primary-search-account-menu" color="inherit">
+              <LogoutIcon />
+            </IconButton>
+            <p className="mobileText-menu mobile-menu-aTEXT">Log Out</p>
+          </a>
+        </MenuItem>
        </div>
 
-        <div className="scrollbar style-1">
+       :
 
-          <ul>
+       <MenuItem onClick={() => {showLogInInputs()}}>
+           <IconButton size="large" aria-label="account of current user" aria-controls="primary-search-account-menu" color="inherit">
+             <AccountCircle />
+           </IconButton>
+           <p className="mobileText-menu">Admin LogIn</p>
+       </MenuItem>
+     }
 
-          <li>
-            <a href="/">
-              <i className="fa fa-home fa-lg menuNav-icon"></i>
-              <span className="nav-text"> Home </span>
-            </a>
-          </li>
-
-            {/*<li>
-              <a href="/list">
-                <i className="fa fa-list-ul fa-lg menuNav-icon"></i>
-                <span className="nav-text"> Show All </span>
-              </a>
-            </li>*/}
-
-            <li>
-              <a href="/create">
-                <i className="bx bxs-add-to-queue menuNav-icon bx-menu-icons"></i>
-                <span className="nav-text"> Add New Camera </span>
-              </a>
-            </li>
-
-            <li>
-              <button className="menu-nav-button" onClick={() => {this.showEditDelteButtons()}}>
-                <i className="bx bxs-edit menuNav-icon bx-menu-icons"></i>
-                <span className="nav-text menu-nav-button-text"> Edit </span>
-              </button>
-            </li>
-
-            {/*<li>
-              <button className="menu-nav-button">
-                <i className="fa fa-filter fa-lg menuNav-icon bx-menu-icons adjust-filter-icon"></i>
-                <span className="nav-text menu-nav-button-text transform-uppercase adjust-filter-text"> Filter </span>
-              </button>
-            </li>*/}
-
-          </ul>
-          <ul className="ulBottom">
-{ /*           <li className="logout">
-              <a href="#">
-                <i className="bx bxs-user menuNav-icon bx-menu-icons"></i>
-                <span className="nav-text"> Log in </span>
-              </a>
-            </li>*/}
-          </ul>
-        </div>
-      </nav>
-      </div>
+      </Menu>
     );
-  }
 
-  showEditDelteButtons = () =>{
 
-    $(".deleteUpdate-cameraButtons-box").toggleClass('show-deleteUpdate-camerabuttons');
-  }
 
-  hideNavBar = () => {
 
-    $(".unExpandNavArea").hide();
-    $("#navBar").toggle().removeClass("button-expandNavBar timetransition25s");
-    $(".showOrHideButton-div").toggleClass("moveAlong").removeClass("moveAlongExpand timetransition25s").addClass("timetransition0s");
-        $(".fa-angle-left").toggleClass("rotate-arrow");
-        $(".fa-angle-double-right").removeClass("rotate-arrow");
 
-    $(".rep_prub_cont").toggleClass("marginLeft-0-Cont");
-    $(".container-cameras-box").toggleClass("paddingLeft-0");
-    $(".rep_prub_cont_inside").toggleClass("paddingLeft-0 paddingRight-0 paddingTop-0");
-    // $(".connection_error").toggleClass("marginleft_alignErrorMessageIcon");
-    // $(".message_connection_error").toggleClass("marginleft_alignErrorMessageText");
+    return(
 
-  }
-  expandNavBar = () => {
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
 
-    $(".unExpandNavArea").toggle();
-    $("#navBar").show().addClass("timetransition25s").toggleClass("button-expandNavBar");
-    $(".showOrHideButton-div").removeClass("moveAlong timetransition0s").addClass("timetransition25s").toggleClass("moveAlongExpand");
-        $(".fa-angle-double-right").toggleClass("rotate-arrow");
-        $(".fa-angle-left").removeClass("rotate-arrow");
+          <a href="/" className="box-logo-content">
+            <img className="box-logo-icon" src={ logoSrc } alt="Gran Telescopio de Canarias" />
+          </a>
+          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
+            Web Cameras
+          </Typography>
 
-    $(".rep_prub_cont").removeClass("marginLeft-0-Cont");
-    $(".container-cameras-box").removeClass("paddingLeft-0");
-    $(".rep_prub_cont_inside").removeClass("paddingLeft-0 paddingRight-0 paddingTop-0");
-  }
-  unExpandNavArea = () => {
+      <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 
-    $(".unExpandNavArea").hide();
-    $("#navBar").removeClass("button-expandNavBar");
-    $(".showOrHideButton-div").removeClass("moveAlongExpand");
-    $(".fa-angle-double-right").removeClass("rotate-arrow");
-  }
+
+          {
+            (loggedIn) ?
+
+          <div>
+            <Tooltip title="Add Camera">
+              <IconButton className="navBar-buttons" size="large" color="inherit">
+                <a href="/create" className="navBar-buttons-addCamera">
+                  <AddBoxRoundedIcon />
+                </a>
+              </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Edit Camera">
+              <IconButton onClick={() => {showEditDeleteButtons()}} className="navBar-buttons" size="large" color="inherit">
+                <ModeEditRoundedIcon />
+              </IconButton>
+            </Tooltip>
+
+            <Tooltip title="Admin LogIn">
+              <IconButton onClick={() => {logOut()}} className="navBar-buttons" size="large" edge="end" aria-controls="primary-search-account-menu">
+                <a href="/" className="navBar-buttons-addCamera">
+                  <LogoutIcon />
+                </a>
+              </IconButton>
+            </Tooltip>
+          </div>
+
+          :
+
+          <Tooltip title="Admin LogIn">
+            <IconButton onClick={() => {showLogInInputs()}} className="navBar-buttons" size="large" edge="end" aria-controls="primary-search-account-menu">
+                <AccountCircle />
+            </IconButton>
+          </Tooltip>
+
+        }
+
+          </Box>
+
+          {/*mobile menu open icon buttons*/}
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              size="large"
+              aria-label="show more"
+              aria-controls="primary-search-account-menu-mobile"
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+            >
+              <MoreIcon />
+            </IconButton>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {
+        renderMobileMenu
+      }
+
+    </Box>
+
+      );
+      }}
+    </Consumer>
+    );
 }
 export default Nav;

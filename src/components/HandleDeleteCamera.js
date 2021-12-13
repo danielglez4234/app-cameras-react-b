@@ -1,9 +1,11 @@
 import React, { Component }  from 'react';
 import axios                 from 'axios';
+import Cookies               from 'universal-cookie';
 
 import loadingSrc            from '../img/loading.svg';
 
 const {REACT_APP_SERVICES_IP} = process.env;
+const cookies = new Cookies();
 
 class HandleDeleteCamera extends Component {
 
@@ -20,6 +22,7 @@ class HandleDeleteCamera extends Component {
   handleDelete= () => {
 
     const _this         = this;
+    const userID        = cookies.get('userID');
     const queryParams   = new URLSearchParams(window.location.search);
 
     const idCamera      = queryParams.get('id');
@@ -27,41 +30,28 @@ class HandleDeleteCamera extends Component {
 
     const options = {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'session-id': userID
     };
 
-      axios.delete(`http://${REACT_APP_SERVICES_IP}:1026/v2/entities/${idCamera}?type=${typeCam}`, { headers: options	})
-        .then(response => {
-          this.setState({ //save the current state of the data
-            loadingDelete: false
-          });
-          console.log('Camera deleted successfully....');
-        })
-        .catch(error => {
-          this.setState({ //save the current state of the data
-            connectionError: true
-          });
-          console.log('Error fetching and parsing data on the ORION context brocker', error);
-        });
 
-      async function deletePost() {
-        await axios.delete(`http://${REACT_APP_SERVICES_IP}:8443/camera/${idCamera}`, { headers: options	})
-          .then(response => {
-            setTimeout(function(){
-            _this.setState({ //save the current state of the data
-              loadingDeleteServer: false
-            });
-          }, 1000);
-            console.log('Camera deleted on sever successfully....');
-          })
-          .catch(error => {
-            _this.setState({ //save the current state of the data
-              connectionErrorServer: true
-            });
-            console.log('Error fetching and parsing data on the ORION context brocker', error);
-          });
-        }
-      deletePost();
+    axios.delete(`http://${REACT_APP_SERVICES_IP}:8443/cameras/${idCamera}`, { headers: options	})
+      .then(response => {
+        setTimeout(function(){
+        _this.setState({ //save the current state of the data
+          loadingDelete: false
+        });
+      }, 1000);
+        console.log('Camera deleted on sever successfully....');
+      })
+      .catch(error => {
+        _this.setState({ //save the current state of the data
+          connectionErrorServer: true
+        });
+        console.log('Error fetching and parsing data on the ORION context brocker', error);
+      });
+
+
 }
 
 
@@ -90,9 +80,8 @@ class HandleDeleteCamera extends Component {
       <div className="rep_prub_form">
 
       { (this.state.connectionError) ? error :
-        (this.state.connectionErrorServer) ? error :
-        (this.state.loadingDelete) ? <img className="loading connection_error" src={ loadingSrc } alt="loading"/> :
-        (this.state.loadingDeleteServer) ? <img className="loading connection_error" src={ loadingSrc } alt="loading"/> : success }
+        (this.state.loadingDelete) ? <img className="loading connection_error" src={ loadingSrc } alt="loading"/> : success }
+
       </div>
     );
   }

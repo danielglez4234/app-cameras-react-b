@@ -24,7 +24,6 @@ class UpdateCamera extends Component {
     this.state = {
       loadingUpdate: true,
       idNotFound: false,
-      // cameradataForTest:{id: "q", name:{value:"hola"}, group:{value:"interno"}, url:{value:{path:"zaza"}}, user:{value:"interno"}, description:{value:"desc"}, kurentoConfig:{value:{"recorder": "true", "carDetection": "true"}}},
       camera: [],
       credentials: ""
     };
@@ -45,7 +44,7 @@ class UpdateCamera extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     };
-    axios.get(`http://${REACT_APP_SERVICES_IP}:1026/v2/entities/${id}`,  { headers: options	})
+    axios.get(`http://${REACT_APP_SERVICES_IP}:8443/cameras/${id}`,  { headers: options	})
       .then(response => {
         this.setState({ //save the current state of the data
           camera: response.data,
@@ -203,7 +202,7 @@ class UpdateCamera extends Component {
     var stream;
     if (!this.state.loadingUpdate) {
 
-      if (this.state.camera.cameraType.value === "static") {
+      if (this.state.camera.cameraType === "static") {
         staticCamera = true;
         stream = false;
       }else {
@@ -213,10 +212,10 @@ class UpdateCamera extends Component {
 
       var selectedPanoramic;
       setTimeout(function(){
-      if (_this.state.camera.panoramic.value === 'Expand-Full') {
+      if (_this.state.camera.panoramic === 'Expand-Full') {
         selectedPanoramic = true;
         $('.select-panoramic option:eq(1)').prop('selected', true);
-      }else if (_this.state.camera.panoramic.value === 'Expand-half') {
+      }else if (_this.state.camera.panoramic === 'Expand-half') {
         selectedPanoramic = true;
         $('.select-panoramic option:eq(2)').prop('selected', true);
       }else {
@@ -225,7 +224,7 @@ class UpdateCamera extends Component {
       }
       }, 200);
 
-      var goups       = this.state.camera.group.value;
+      var goups       = this.state.camera.group;
       var allGroups   = ["Interior-GTC", "Exterior-GTC","Offices","Dome","Corridor","Others"];
       var reultGroup  = [];
       var liGroups;
@@ -249,7 +248,7 @@ class UpdateCamera extends Component {
      </div>
       <form className="formCameras" action="/selectedCamera" method="get">
       { (this.state.loadingUpdate) ? <img className="loadingOrder" src={ loading2Src } alt="loading"/> :
-      <input id="countCamera" name="order" className="input-orderCamera" defaultValue={ this.state.camera.order.value } />
+      <input id="countCamera" name="order" className="input-orderCamera" defaultValue={ this.state.camera.order } />
       }
 <div className="formInputsfields">
 
@@ -270,7 +269,7 @@ class UpdateCamera extends Component {
             <img src={ nameIcon } alt="name" className="iconInput iconInput-name" />
             <span className="input-label-span input-label-name">Name</span>
           </label>
-           <input defaultValue={this.state.camera.name.value} id="nameCamera" name="nameCamera" className="input-form input-form-name" placeholder="Name..." />
+           <input defaultValue={this.state.camera.name} id="nameCamera" name="nameCamera" className="input-form input-form-name" placeholder="Name..." />
         </div>
         <div className="cont-input cont-input-group">
           <label htmlFor="groupCamera" className="label-input" >
@@ -303,7 +302,7 @@ class UpdateCamera extends Component {
             <img src={ urlIcon } alt="url" className="iconInput iconInput-url" />
             <span className="input-label-span input-label-url">URL</span>
           </label>
-           <input defaultValue={this.state.camera.url.value} id="urlCamera" name="urlCamera" className="input-form input-form-url" placeholder="http://... or https://..." />
+           <input defaultValue={this.state.camera.url} id="urlCamera" name="urlCamera" className="input-form input-form-url" placeholder="http://... or https://..." />
         </div>
 
 
@@ -350,7 +349,7 @@ class UpdateCamera extends Component {
               <img src={ userIcon } alt="user" className="iconInput iconInput-user" />
               <span className="input-label-span input-label-user">User</span>
             </label>
-            <input defaultValue={this.state.camera.user.value} id="userCamera" name="userCamera" className="input-form" placeholder="User name..."/>
+            <input defaultValue={this.state.camera.user} id="userCamera" name="userCamera" className="input-form" placeholder="User name..."/>
           </div>
 
           <div className="cont-input checkboxUrlCredentials displayInlineBlock">
@@ -383,7 +382,7 @@ class UpdateCamera extends Component {
         <div id="descriptionCamera" className="cont-input displayBlock">
           <span className="input-label-span input-label-description">Description</span>
           <label htmlFor="descriptionCamera-textarea" className="label-input label-input-description">
-            <textarea id="descriptionCamera-textarea" defaultValue={this.state.camera.description.value} name="descriptionCamera" className="description-input-textarea"></textarea>
+            <textarea id="descriptionCamera-textarea" defaultValue={this.state.camera.description} name="descriptionCamera" className="description-input-textarea"></textarea>
           </label>
         </div>
 
@@ -391,14 +390,14 @@ class UpdateCamera extends Component {
 
         <div className="kurentoprocess cont-input displayInlineBlock">
           <label htmlFor="recordImages" className="omrs-input-underlined">
-            <input id="recordImages" defaultChecked={this.state.camera.kurentoConfig.value.recorder} type="checkbox" name="recordImages" className="width-input-1 credentials-input" />
+            <input id="recordImages" defaultChecked={this.state.camera.kurentoConfig.recorder} type="checkbox" name="recordImages" className="width-input-1 credentials-input" />
             <span className="input-label-checkCredentials"> Record images </span>
           </label>
         </div>
         <br />
         <div className="kurentoprocess cont-input displayInlineBlock">
           <label htmlFor="processImages" className="omrs-input-underlined">
-            <input id="processImages" defaultChecked={this.state.camera.kurentoConfig.value.carDetection} type="checkbox" name="processImages" className="width-input-1 credentials-input" />
+            <input id="processImages" defaultChecked={this.state.camera.kurentoConfig.carDetection} type="checkbox" name="processImages" className="width-input-1 credentials-input" />
             <span className="input-label-checkCredentials"> Process images </span>
           </label>
         </div>

@@ -1,19 +1,21 @@
+## Docker settings
+
+**To run on docker:**
+Donwload the Dockerfile and run `Docker build .` in the same directory where you downloaded it. \
+Open [http://localhost:3005](http://localhost:3005) to view it in the browser.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-Once downloaded run this command in the parent directory to install all the dependencies:
-
-### `npm install`
-
 In the project directory, you can run:
 
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3005](http://localhost:3005) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.

@@ -2,10 +2,12 @@ import React, { Component }  from 'react';
 import axios from 'axios';
 // import md5 from 'md5';
 // import * as $ from 'jquery';
+import Cookies               from 'universal-cookie';
 
 import loadingSrc from '../img/loading.svg';
 
 const {REACT_APP_SERVICES_IP} = process.env;
+const cookies = new Cookies();
 
 class HandleUpdateCamera extends Component {
 
@@ -18,6 +20,7 @@ class HandleUpdateCamera extends Component {
   }
 
   handleUpdate = () => {
+    const userID      = cookies.get('userID');
     const queryParams = new URLSearchParams(window.location.search);
     const id          = queryParams.get('idCamera');
     const name        = queryParams.get('nameCamera');
@@ -65,64 +68,41 @@ class HandleUpdateCamera extends Component {
     // const regexhttps        = /^https:\/\/+/;
     // const regexhttp         = /^http:\/\/+/;
 
-    var url                 = queryParams.get('urlCamera');
+    var url    = queryParams.get('urlCamera');
     // const credentialsCheck  = queryParams.get('credentialsCheck');
-    const user              = queryParams.get('userCamera');
-    const pwd               = queryParams.get('pwdCamera');
+    const user = queryParams.get('userCamera');
+    const pwd  = queryParams.get('pwdCamera');
 
       var password;
       if (pwd) {
-        password = {
-                    "type": "String",
-                    "value" : pwd
-                   };
+        password =  pwd;
       }
-        // const encryptPwd = md5(pwd);
+      // const encryptPwd = md5(pwd);
 
 
     const options = {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'session-id': userID
     };
+
     const updateBody = {
-      "name": {
-        "type": "String",
-        "value": name
-      },
-      "cameraType": {
-        "type":    "String",
-        "value":   cameraType
-      },
-      "panoramic":{
-        "type": "String",
-        "value": panoramic
-      },
-      "group":{
-        "type": "String",
-        "value": setgroup
-      },
-      "url": {
-        "type": "String",
-        "value": url
-      },
-      "user": {
-        "type": "String",
-        "value" :user,
-      },
+      "id": id,
+      "name": name,
+      "cameraType": cameraType,
+      "panoramic": panoramic,
+      "group": setgroup,
+      "url": url,
+      "user": user,
       password,
       "kurentoConfig": {
-        "type": "Boolean",
-        "value": {
-          "recorder":     recordStatus,
+          "recorder": recordStatus,
           "carDetection": processStatus
-        },
       },
-      "description": {
-        "type": "String",
-        "value": description
-      }
+      "description": description
     };
-    axios.patch(`http://${REACT_APP_SERVICES_IP}:1026/v2/entities/${id}/attrs?options=append`, updateBody, { headers: options	})
+
+    axios.patch(`http://${REACT_APP_SERVICES_IP}:8443/cameras`, updateBody, { headers: options	})
       .then(response => {
         this.setState({ //save the current state of the data
           loadingUpdate: false

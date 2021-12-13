@@ -143,7 +143,7 @@ class CreateCamera extends Component {
 
 
   countCamerasForOrder = () => {
-    axios.get(`http://${REACT_APP_SERVICES_IP}:1026/v2/entities/`, { headers: options	})
+    axios.get(`http://${REACT_APP_SERVICES_IP}:8443/cameras`, { headers: options	})
       .then(response => {
 
         var data = response.data;

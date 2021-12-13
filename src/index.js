@@ -11,10 +11,11 @@ import './css/foundation.min.css';
 import './js/scripts.js';
 
 import './includes/bootstrap.js';
-
+// console.log = console.warn = console.error = () => {};
+// console.warn = () => {};
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -7,6 +7,7 @@ import loadingSrc             from '../img/loading.svg';
 import apiNotResponding       from '../img/apiNotResponding.png';
 // import deleteIcon          from '../img/delete.png';
 
+
 import Videos                 from './Videos';
 import ConnectionError        from './ConnectionError';
 
@@ -19,8 +20,8 @@ class ContainerVideo extends Component {
       // mapTestId: [
       //             {id:'1', cameraType:"static", url:"https://atmosportal.gtc.iac.es/webcams/camaraAllSky.jpg", order: 1},
       //             {id:'2', cameraType:"static", url:"https://atmosportal.gtc.iac.es/img/lastskycam.jpg", order: 2},
-      //             {id:'3', cameraType:"static", url:"https://atmosportal.gtc.iac.es/img/lastzenithcam.jpg", order: 3, panoramic:true},
-      //             {id:'4', cameraType:"static", url:"https://atmosportal.gtc.iac.es/webcams/pasillo.jpg", order: 5, panoramic:false}
+      //             {id:'3', cameraType:"static", url:"https://atmosportal.gtc.iac.es/img/lastzenithcam.jpg", order: 3},
+      //             {id:'4', cameraType:"static", url:"https://atmosportal.gtc.iac.es/webcams/pasillo.jpg", order: 5},
       //           ]
     };
   }

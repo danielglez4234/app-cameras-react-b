@@ -3,8 +3,10 @@ import axios                 from 'axios';
 // import md5                   from 'md5';
 
 import loadingSrc            from '../img/loading.svg';
+import Cookies               from 'universal-cookie';
 
 const {REACT_APP_SERVICES_IP} = process.env;
+const cookies = new Cookies();
 
 class HandleAddCamera extends Component {
 
@@ -18,6 +20,7 @@ class HandleAddCamera extends Component {
 
 
   addCamera = () => {
+    const userID      = cookies.get('userID');
     const queryParams = new URLSearchParams(window.location.search);
     const id          = queryParams.get('idCamera');
     const order       = queryParams.get('order');
@@ -81,56 +84,33 @@ class HandleAddCamera extends Component {
 
     const options = {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'session-id': userID
     };
+
+    console.log("-----USERID---->" + userID);
+
     const createBodyEntities = {
-      "id":       id,
-      "type":     "Camera",
-      "cameraType": {
-        "type":    "String",
-        "value":   cameraType
-      },
-      "order":{
-        "type": "Number",
-        "value": order
-      },
-      "panoramic":{
-        "type": "String",
-        "value": panoramic
-      },
-      "name": {
-        "type":    "String",
-        "value":   name
-      },
-      "group":{
-        "type":    "ArrayList",
-        "value":   setgroup
-      },
-      "url": {
-        "type":    "String",
-        "value":   url
-      },
-      "user": {
-        "type":    "String",
-        "value":   user,
-      },
-      "password": {
-      "type":     "String",
-      "value" :    pwd,
-      },
+      "id": id,
+      "type": "Camera",
+      "cameraType": cameraType,
+      "order": order,
+      "panoramic": panoramic,
+      "name": name,
+      "group": setgroup,
+      "url": url,
+      "user": user,
+      "password": pwd,
       "kurentoConfig": {
-        "type": "Map",
-        "value": {
-          "recorder":     recordStatus,
-          "carDetection": processStatus
-        },
+        "recorder": recordStatus,
+        "carDetection": processStatus
       },
-      "description": {
-        "type":   "String",
-        "value":  description
-      }
+      "description": description
     };
-    axios.post(`http://${REACT_APP_SERVICES_IP}:1026/v2/entities`, createBodyEntities, { headers: options	})
+
+    console.log(createBodyEntities);
+
+    axios.post(`http://${REACT_APP_SERVICES_IP}:8443/cameras`, createBodyEntities, { headers: options	})
       .then(response => {
         this.setState({ //save the current state of the data
           loadingCreate: false
