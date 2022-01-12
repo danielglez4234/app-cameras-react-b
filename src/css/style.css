@@ -6,7 +6,7 @@ body
 	font-weight:300;
   height: 100%;
   /* background-color: #313338 !important; */
-  background-color: #495057 !important;
+  background-color: #343233 !important;
   color: white !important;
 }
 
@@ -341,7 +341,7 @@ text-transform: uppercase;
 .rep_prub_form{
   height: 100%;
   width: 100%;
-  padding: 5px 5px 0px 5px;
+  background-image: radial-gradient(ellipse closest-side at 50% 50%, #3a3f45, #37383c 25%, #343233);
   z-index: -5;
 }
 
@@ -675,10 +675,7 @@ text-transform: uppercase;
   .loadingOrder{
     height: 40px;
     float: right;
-    /* position: absolute;
-    top: -16px;
-    right: 19px; */
-    margin-top: -13px;
+    margin-right: 15px;
   }
 
     .connection_error{
@@ -868,29 +865,26 @@ text-transform: uppercase;
 
 
 .update_container {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  left: 50%;
-  margin-left: -525.5px;
+  top: -6px;
   justify-content: space-around;
-  margin-top: 30px;
-  padding: 21px;
-  padding-bottom: 0px;
-  box-shadow: 2px 2px 20px #1f1f21;
+  box-shadow: 3px 9px 13px #0a0a0c;
   background-color: #f1f2f3;
   transition: all .3s ease-out;
-  width: 1051px;
-  /* border-top: 2px dotted #8a8a8a; */
+  height: 100%;
 }
 
-
+.cont-input-user-changePass{
+  display: flex;
+}
+.update-change-password-checbox{
+  margin-top: 70px;
+}
 .mark_title_update{
   background-color: #56596d;
-  margin-right: -21px;
-  margin-left: -21px;
   padding: 1px 0px;
-  margin-top: -21px;
-  margin-bottom: 18px;
 }
 .mark_title_create{
   background-color: #56596d !important;
@@ -911,10 +905,17 @@ text-transform: uppercase;
 }
 
 .formCameras{
-
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .formInputsfields{
   padding: 30px 30px;
+  flex: 1;
+}
+
+.conts-inputs-id-cameraName{
+  display: flex;
 }
 
 
@@ -934,19 +935,21 @@ text-transform: uppercase;
   .cont-input-group {
     margin-top:20px;
     margin-bottom: 15px;
+    display: flex;
   }
   .cont-input-url {
     margin-bottom:40px;
   }
   .cont-input-user{
+    display: flex;
     margin-bottom:30px;
     margin-top: 60px
   }
   .cont-input-pwd{
-    display:inline-block;
+    display: flex;
   }
   .cont-input-confirm-pwd{
-    display:inline-block;
+    display: flex;
     margin-bottom: 30px;
     margin-left:40px;
   }
@@ -954,7 +957,7 @@ text-transform: uppercase;
           margin-top: 19px;
         }
         .cont-update-input-confirm-pwd{
-
+          margin-top: 19px
         }
 
 .iconInput {
@@ -1006,6 +1009,14 @@ text-transform: uppercase;
     width: 26px;
     margin-left: -16px;
   }
+
+
+.input-group-select-box{
+  display: flex;
+}
+.cont-inputs-url-credentials{
+  display: flex;
+}
 
 
 .label-input{
@@ -1074,6 +1085,10 @@ input:focus, textarea:focus, select:focus{
   opacity: 0.7;
 }
 
+.cont-view-order{
+
+}
+
 .input-orderCamera{
   background-color: transparent;
   border-color: transparent;
@@ -1081,9 +1096,7 @@ input:focus, textarea:focus, select:focus{
   font-family: 'Comfortaa-Bold';
   width: 61px;
   text-align: center;
-  position: relative;
   float: right;
-  top: -11px;
   pointer-events: none;
 }
 
@@ -1156,7 +1169,7 @@ input:focus, textarea:focus, select:focus{
   position: relative;
   background-color: #e3e7ea;
   height: 0px;
-  margin: 0px -51px 40px -51px;
+  margin: 0px -30px 40px -30px;
   padding-left: 51px;
   padding-right: 51px;
   overflow-y: hidden;
@@ -1176,6 +1189,10 @@ input:focus, textarea:focus, select:focus{
   transition: all .2s linear;
 }
 
+.cont-password-and-confirm{
+  display: flex;
+}
+
 
   .show-credential-section{
     height: 248px;
@@ -1189,6 +1206,7 @@ input:focus, textarea:focus, select:focus{
   }
 
 .change-password-section{
+  display: flex;
   height: 0px;
   background-color: #f1f2f3;
   margin-left: -51px;
@@ -1199,7 +1217,7 @@ input:focus, textarea:focus, select:focus{
   opacity:0;
 }
 .expand-update-credential-section{
-  height: 304px;
+  height: 329px;
   transition: all .2s linear;
 }
     .show-password-section{
@@ -1366,8 +1384,6 @@ input:focus, textarea:focus, select:focus{
 .buttons-cont{
   background-color: #575a6f;
   position: relative;
-  margin-left: -21px;
-  margin-right: -21px;
   z-index: 2;
 }
 
@@ -1949,15 +1965,83 @@ margin-bottom: 0px;
 
 
 @media only screen and (max-width: 900px) {
-  /* For Tablets: */
   .width-height-7 {
     width: 49%;
     height: 32%;
   }
 }
+@media only screen and (max-width: 1000px) {
+  .conts-inputs-id-cameraName{
+    flex-direction: column;
+  }
+  .cont-input-name {
+    margin-left: 0px;
+  }
+  .cont-input-confirm-pwd{
+    margin-top:20px;
+    margin-left:0px;
+  }
+  .show-credential-section{
+    height: 326px;
+  }
+  .show-update-credential-section{
+    height: 195px;
+  }
+  .expand-update-credential-section{
+    height: 440px;
+  }
+  .show-password-section{
+    padding-right: 50px;
+  }
+  .show-password-section{
+    height: 218px;
+  }
+  .input-form, .input-form[type=password]{
+    width: 100%;
+  }
+  .input-form-id-camera{
+    width: 100%;
+  }
+  .input-form-name{
+    width: 100%;
+  }
+  .input-form-url{
+    width: 100% !important;
+  }
+  .label-input-description{
+    width: 100%;
+  }
+  .cont-input-group {
+    flex-direction: column;
+  }
+  .cont-inputs-url-credentials{
+    flex-direction: column;
+  }
+  .cont-password-and-confirm{
+    flex-direction: column;
+  }
+  .change-password-section{
+    flex-direction: column;
+  }
+  .cont-input-user-changePass{
+    flex-direction: column;
+  }
+  .update-change-password-checbox{
+    margin-top: 0px;
+  }
+  .multiSel-Box {
+    width: 100%;
+  }
+}
+/* @media only screen and (max-width: 1060px) {
+  .cont-input-confirm-pwd {
+    display: inline-block;
+    margin-bottom: 30px;
+    margin-left: 0px;
+  }
+} */
 
 @media only screen and (max-width: 660px) {
-  /* For Mobiles: */
   .width-height-7 {
     width: 99%;
     height: 32%;

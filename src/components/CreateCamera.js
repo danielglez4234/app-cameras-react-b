@@ -167,7 +167,7 @@ class CreateCamera extends Component {
 
 
   return(
-<div className="rep_prub_form">
+  <div className="rep_prub_form">
 
       <div className="update_container">
         <div id="title_container" className="mark_title_update mark_title_create">
@@ -175,13 +175,15 @@ class CreateCamera extends Component {
         </div>
         <form className="formCameras formCamerasCreate" action="/add" method="get">
 
-        { (this.state.loadingOrder) ? <img className="loadingOrder" src={ loading2Src } alt="loading"/> :
-        <input id="countCamera" name="order" className="input-orderCamera" defaultValue={this.state.countCameras} />
+        {
+          (this.state.loadingOrder) ? <div className="cont-view-order"><img className="loadingOrder" src={ loading2Src } alt="loading"/></div> :
+          <div className="cont-view-order"><input id="countCamera" name="order" className="input-orderCamera" defaultValue={this.state.countCameras} /></div>
         }
 
 
-<div className="formInputsfields">
-          <div className="cont-input cont-input-idCam displayInlineBlock">
+      <div className="formInputsfields">
+        <div className="conts-inputs-id-cameraName">
+          <div className="cont-input cont-input-idCam">
             <label htmlFor="idCamera" className="label-input">
               <img src={ idIcon } alt="id-camera" className="iconInput iconInput-idcam" />
               <span className="input-label-span input-label-idCam">Id-Camera</span>
@@ -189,88 +191,92 @@ class CreateCamera extends Component {
             <input id="idCamera" name="idCamera" className="input-form input-form-id-camera" placeholder="Id..."/>
           </div>
 
-          <div className="cont-input cont-input-name displayInlineBlock">
+          <div className="cont-input cont-input-name">
             <label htmlFor="nameCamera" className="label-input" >
               <img src={ nameIcon } alt="name" className="iconInput iconInput-name" />
               <span className="input-label-span input-label-name">Name</span>
             </label>
              <input id="nameCamera" name="nameCamera" className="input-form input-form-name" placeholder="Name..." />
           </div>
-
+        </div>
           <div className="cont-input cont-input-group">
-            <label htmlFor="groupCamera" className="label-input" >
-              <img src={ groupIcon } alt="group" className="iconInput iconInput-group" />
-              <span className="input-label-span input-label-group">Group</span>
-            </label>
-            <dl id="groupCamera" className="dropdown">
-                <dt>
-                  <div className="toRotateTheArrow">
-                    <span className="hida select-dropdowm">Select</span>
-                    <img src={ arrowDown } alt="arrow down" className="iconInput iconInput-arrowDown" />
-                  </div>
-                </dt>
-                <dd>
-                    <div className="mutliSelect">
-                        <ul>
-                            <li>
-                                <label htmlFor="Interior-GTC" className="label-input-select" >Interior-GTC</label>
-                                <input id="Interior-GTC" name="interiorGTC" type="checkbox" value="Interior-GTC" />
-                            </li>
-                            <li>
-                                <label htmlFor="Exterior-GTC" className="label-input-select" >Exterior-GTC</label>
-                                <input id="Exterior-GTC" name="exteriorGTC" type="checkbox" value="Exterior-GTC" />
-                            </li>
-                            <li>
-                                <label htmlFor="Offices" className="label-input-select" >Offices</label>
-                                <input id="Offices" name="offices" type="checkbox" value="Offices" />
-                            </li>
-                            <li>
-                                <label htmlFor="Dome" className="label-input-select" >Dome</label>
-                                <input id="Dome" name="dome" type="checkbox" value="Dome" />
-                            </li>
-                            <li>
-                                <label htmlFor="Corridor" className="label-input-select" >Corridor</label>
-                                <input id="Corridor" name="corridor" type="checkbox" value="Corridor" />
-                            </li>
-                            <li>
-                                <label htmlFor="Others" className="label-input-select" >Others</label>
-                                <input id="Others" name="others" type="checkbox" value="Others" />
-                            </li>
-                        </ul>
+            <div className="input-group-select-box">
+              <label htmlFor="groupCamera" className="label-input" >
+                <img src={ groupIcon } alt="group" className="iconInput iconInput-group" />
+                <span className="input-label-span input-label-group">Group</span>
+              </label>
+              <dl id="groupCamera" className="dropdown">
+                  <dt>
+                    <div className="toRotateTheArrow">
+                      <span className="hida select-dropdowm">Select</span>
+                      <img src={ arrowDown } alt="arrow down" className="iconInput iconInput-arrowDown" />
                     </div>
-                </dd>
-            </dl>
+                  </dt>
+                  <dd>
+                      <div className="mutliSelect">
+                          <ul>
+                              <li>
+                                  <label htmlFor="Interior-GTC" className="label-input-select" >Interior-GTC</label>
+                                  <input id="Interior-GTC" name="interiorGTC" type="checkbox" value="Interior-GTC" />
+                              </li>
+                              <li>
+                                  <label htmlFor="Exterior-GTC" className="label-input-select" >Exterior-GTC</label>
+                                  <input id="Exterior-GTC" name="exteriorGTC" type="checkbox" value="Exterior-GTC" />
+                              </li>
+                              <li>
+                                  <label htmlFor="Offices" className="label-input-select" >Offices</label>
+                                  <input id="Offices" name="offices" type="checkbox" value="Offices" />
+                              </li>
+                              <li>
+                                  <label htmlFor="Dome" className="label-input-select" >Dome</label>
+                                  <input id="Dome" name="dome" type="checkbox" value="Dome" />
+                              </li>
+                              <li>
+                                  <label htmlFor="Corridor" className="label-input-select" >Corridor</label>
+                                  <input id="Corridor" name="corridor" type="checkbox" value="Corridor" />
+                              </li>
+                              <li>
+                                  <label htmlFor="Others" className="label-input-select" >Others</label>
+                                  <input id="Others" name="others" type="checkbox" value="Others" />
+                              </li>
+                          </ul>
+                      </div>
+                  </dd>
+              </dl>
+            </div>
             <div className="multiSel-Box"><p className="multiSel"></p></div>
           </div>
 
           <br/>
+          <div className="cont-inputs-url-credentials">
+            <div className="cont-input cont-input-url">
+              <label htmlFor="urlCamera" className="label-input" >
+                <img src={ urlIcon } alt="url" className="iconInput iconInput-url" />
+                <span className="input-label-span input-label-url">URL</span>
+              </label>
+               <input id="urlCamera" name="urlCamera" className="input-form input-form-url" placeholder="http://... or https://..." />
+            </div>
+            <div className="cont-check-setings">
+              <div onClick={ this.staticChecked } className="cont-input checkboxUrlCredentials displayInlineBlock">
+                <label htmlFor="static" className="omrs-input-underlined">
+                  <input onClick={ this.streamCheckedHidePanoramic } id="static" type="radio" name="cameraType" value="static" className="width-input-1 credentials-input" />
+                  <span className="input-label-checkCredentials"> Static </span>
+                </label>
+              </div>
+              <div onClick={ this.staticChecked } className="cont-input checkboxUrlCredentials displayInlineBlock">
+                <label htmlFor="Stream" className="omrs-input-underlined">
+                  <input onClick={ this.streamCheckedHidePanoramic } id="stream" defaultChecked id="Stream" type="radio" name="cameraType" value="stream" className="width-input-1 credentials-input" />
+                  <span className="input-label-checkCredentials"> Stream </span>
+                </label>
+              </div>
 
-          <div className="cont-input cont-input-url displayInlineBlock">
-            <label htmlFor="urlCamera" className="label-input" >
-              <img src={ urlIcon } alt="url" className="iconInput iconInput-url" />
-              <span className="input-label-span input-label-url">URL</span>
-            </label>
-             <input id="urlCamera" name="urlCamera" className="input-form input-form-url" placeholder="http://... or https://..." />
-          </div>
-
-          <div onClick={ this.staticChecked } className="cont-input checkboxUrlCredentials displayInlineBlock">
-            <label htmlFor="static" className="omrs-input-underlined">
-              <input onClick={ this.streamCheckedHidePanoramic } id="static" type="radio" name="cameraType" value="static" className="width-input-1 credentials-input" />
-              <span className="input-label-checkCredentials"> Static </span>
-            </label>
-          </div>
-          <div onClick={ this.staticChecked } className="cont-input checkboxUrlCredentials displayInlineBlock">
-            <label htmlFor="Stream" className="omrs-input-underlined">
-              <input onClick={ this.streamCheckedHidePanoramic } id="stream" defaultChecked id="Stream" type="radio" name="cameraType" value="stream" className="width-input-1 credentials-input" />
-              <span className="input-label-checkCredentials"> Stream </span>
-            </label>
-          </div>
-
-          <div className="cont-input checkboxUrlCredentials displayInlineBlock">
-            <label htmlFor="checkCreandentials" className="omrs-input-underlined">
-              <input onClick={ this.checkCredentials } id="checkCreandentials" type="checkbox" name="credentialsCheck" className="width-input-1 credentials-input" />
-              <span className="input-label-checkCredentials"> Credentials </span>
-            </label>
+              <div className="cont-input checkboxUrlCredentials displayInlineBlock">
+                <label htmlFor="checkCreandentials" className="omrs-input-underlined">
+                  <input onClick={ this.checkCredentials } id="checkCreandentials" type="checkbox" name="credentialsCheck" className="width-input-1 credentials-input" />
+                  <span className="input-label-checkCredentials"> Credentials </span>
+                </label>
+              </div>
+            </div>
           </div>
 
           <div className="panoramicInput ont-input checkboxUrlCredentials display-none-expand">
@@ -299,21 +305,22 @@ class CreateCamera extends Component {
             <input id="userCamera" name="userCamera" className="input-form" placeholder="User name..."/>
           </div>
 
+          <div className="cont-password-and-confirm">
+            <div id="pwdForCamera" className="cont-input-pwd">
+              <label htmlFor="pwdCamera" className="label-input">
+                <img src={ pwdIcon } alt="pwd" className="iconInput iconInput-pwd" />
+                <span className="input-label-span input-label-pwd">Password</span>
+              </label>
+              <input id="pwdCamera" type="password" name="pwdCamera" className="input-form" placeholder="Password..."/>
+            </div>
 
-          <div id="pwdForCamera" className="cont-input-pwd">
-            <label htmlFor="pwdCamera" className="label-input">
-              <img src={ pwdIcon } alt="pwd" className="iconInput iconInput-pwd" />
-              <span className="input-label-span input-label-pwd">Password</span>
-            </label>
-            <input id="pwdCamera" type="password" name="pwdCamera" className="input-form" placeholder="Password..."/>
-          </div>
-
-          <div id="confirmPwdForcamera" className=" cont-input-confirm-pwd">
-            <label htmlFor="confirmPwdCamera" className="label-input">
-              <img src={ pwdIcon } alt="confirm-pwd" className="iconInput iconInput-confirm-pwd" />
-              <span className="input-label-span input-label-confirm-pwd">Confirm Password</span>
-            </label>
-            <input id="confirmPwdCamera" type="password" className="input-form" placeholder="Confirm Password..."/>
+            <div id="confirmPwdForcamera" className=" cont-input-confirm-pwd">
+              <label htmlFor="confirmPwdCamera" className="label-input">
+                <img src={ pwdIcon } alt="confirm-pwd" className="iconInput iconInput-confirm-pwd" />
+                <span className="input-label-span input-label-confirm-pwd">Confirm Password</span>
+              </label>
+              <input id="confirmPwdCamera" type="password" className="input-form" placeholder="Confirm Password..."/>
+            </div>
           </div>
         </div>
 

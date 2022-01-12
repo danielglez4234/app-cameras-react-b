@@ -71,8 +71,7 @@ class App extends Component {
 
 
   componentDidMount() {
-
-    if (cookies.get('userID') === "") {
+    if (cookies.get('userID') === "" || cookies.get('userID') === undefined) {
       this.setState({ loggedIn: false });
     }else {
       this.setState({ loggedIn: true });
