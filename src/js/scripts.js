@@ -2,13 +2,13 @@ import * as $ from 'jquery';
 
 
 const regex = {
-  id:                  /^[A-Za-zÀ-ú0-9]{3,10}$/, //only letters, no spaces, 3 to 10 character, no special characters and no numbers allowed
-  name:                /^[A-Za-zÀ-ú0-9\s]{3,40}$/, //letters and numbers with spaces, 3 to 40 characters and no special characters allowed
-  group:               /^[A-Za-z0-9]{3,20}$/, //letters and numbers, 3 to 20 characters and no special characters allowed
+  id:                  /^[A-Za-zÀ-ú0-9]{3,50}$/, //only letters, no spaces, 3 to 50 character, no special characters and no numbers allowed
+  name:                /^[A-Za-zÀ-ú0-9\s]{3,80}$/, //letters and numbers with spaces, 3 to 40 characters and no special characters allowed
+  group:               /^[A-Za-z0-9]{3,100}$/, //letters and numbers, 3 to 20 characters and no special characters allowed
   url:                 /(rtsp:\/\/|https?:\/\/(www\.)?)[-a-zA-Z0-9@:%._\\+~#=]{1,256}[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\\+.\/~#?&=]*)/, // In short, it only allows a valid format starting with https:// or http:// and the follow characters (except for invalid characters in a url like ''"" or !¡?¿)
   detectCrendentials:  /[@]/, // if the url have an "@" it means that have credentials set on the url itself
-  user:                /^[A-Za-z0-9\s]{3,50}$/, //letters and numbers, 3 to 50 characters and no special characters allowed and no accents
-  pwd:                 /^(?=.*[a-zA-ZÀ-ú0-9\d].*)[a-zA-Z\d!@#$%&*]{3,}$/, //letters, numbers and special characterç, no spaces, at least 3 character
+  user:                /^[A-Za-z0-9\s]{3,100}$/, //letters and numbers, 3 to 50 characters and no special characters allowed and no accents
+  pwd:                 /.{3,256}$/, // at least 3 character
   description:         /.{3,400}$/ // matches any character except lines breaks and 3 to 400 characters
 }
 // -----------------------
@@ -19,7 +19,7 @@ setTimeout(function(){
 
 // --------------------------------------------- ERROR HTML Messages -------------------------------------------------------------------------------------
 
-var $errorIdCamera              = $('<div class="contein_error_message contein_error_message-id margin-top-15px"><div class="error_message">Length range from 3 to 10, no spaces and scpecial characters.</div></div>');
+var $errorIdCamera              = $('<div class="contein_error_message contein_error_message-id margin-top-15px"><div class="error_message">Length range from 3 to 50, no spaces and scpecial characters.</div></div>');
 var $errorIdCameraEmpty         = $('<div class="contein_error_message contein_error_message-id margin-top-15px"><div class="error_message">The ID field cannot be empty!.</div></div>');
 
   $('.idCamera2').after($errorIdCamera);
@@ -61,7 +61,7 @@ $($errorUser).hide();
 $($errorUserEmpty).hide();
 
 
-var $errorPwd                   = $('<div class="contein_error_message error-password"><div class="error_message">Minimum length of 3 and no spaces.</div></div>');
+var $errorPwd                   = $('<div class="contein_error_message error-password"><div class="error_message">Minimum length of 3.</div></div>');
 var $errorConfirmPwd            = $('<div class="contein_error_message error-confirm-password"><div class="error_message ">The passwords don\'t match</div></div>');
 $('#pwdCamera').after($errorPwd);
 $('#confirmPwdCamera').after($errorConfirmPwd);

@@ -370,65 +370,57 @@ class App extends Component {
         apiRestConnectioError: this.state.apiRestConnectioError
       }}>
       <BrowserRouter>
-        <Nav />
-
-          <Switch>
-
-            <Route exact path="/"  render={() =>
-              (this.state.connectionError) ? <ConnectionError /> :
-              (this.state.apiRestConnectioError) ?
-              <div className="container-cameras-box">
-                <div className="rep_prub_cont"><img className="loading connection_error" src={ apiNotResponding } alt="loading"/>
-                  <span className="message_connection_error api_error">APi REST server is not responding...</span>
-                </div>
-              </div> :
-              (this.state.loading) ?
-              <div className="container-cameras-box">
-                <div className="rep_prub_cont">
-                  <img className="loading connection_error" src={ loadingSrc } alt="loading"/>
-                </div>
-              </div> :
-              <ContainerVideo />
-            } />
-
-            <Route path="/list" render={() =>
-              (this.state.connectionError) ? <ConnectionError /> :
-              (this.state.apiRestConnectioError) ?
-              <div className="container-cameras-box">
-                <div className="rep_prub_cont"><img className="loading connection_error" src={ apiNotResponding } alt="loading"/>
-                  <span className="message_connection_error api_error">APi REST server is not responding...</span>
-                </div>
-              </div> :
-              (this.state.loading) ?
-              <div className="container-cameras-box">
-                <div className="rep_prub_cont">
-                  <img className="loading connection_error" src={ loadingSrc } alt="loading"/>
-                </div>
-              </div> :
-              <ContainerVideo />
-            } />
-
-
-
-              {
-                (this.state.loggedIn) ?
-                  <div className="display-flex-grow">
-                    <Route path="/create"         render={() => <CreateCamera /> } />
-                    <Route path="/update"         render={() => <UpdateCamera /> } />
-                    <Route path="/add"            render={() => <HandleAddCamera /> } />
-                    <Route path="/selectedCamera" render={() => <HandleUpdateCamera /> } />
-                    <Route path="/delete"         render={() => <HandleDeleteCamera /> } />
+        <div className="container-box">
+          <Nav />
+            <Switch>
+              <Route exact path="/"  render={() =>
+                (this.state.connectionError) ? <ConnectionError /> :
+                (this.state.apiRestConnectioError) ?
+                <div className="container-cameras-box">
+                  <div className="rep_prub_cont"><img className="loading connection_error" src={ apiNotResponding } alt="loading"/>
+                    <span className="message_connection_error api_error">APi REST server is not responding...</span>
                   </div>
-                : ""
-              }
+                </div> :
+                (this.state.loading) ?
+                <div className="container-cameras-box">
+                  <div className="rep_prub_cont">
+                    <img className="loading connection_error" src={ loadingSrc } alt="loading"/>
+                  </div>
+                </div> :
+                <ContainerVideo />
+              } />
 
+              <Route path="/list" render={() =>
+                (this.state.connectionError) ? <ConnectionError /> :
+                (this.state.apiRestConnectioError) ?
+                <div className="container-cameras-box">
+                  <div className="rep_prub_cont"><img className="loading connection_error" src={ apiNotResponding } alt="loading"/>
+                    <span className="message_connection_error api_error">APi REST server is not responding...</span>
+                  </div>
+                </div> :
+                (this.state.loading) ?
+                <div className="container-cameras-box">
+                  <div className="rep_prub_cont">
+                    <img className="loading connection_error" src={ loadingSrc } alt="loading"/>
+                  </div>
+                </div> :
+                <ContainerVideo />
+              } />
+                {
+                  (this.state.loggedIn) ?
+                    <div className="display-flex-grow">
+                      <Route path="/create"         render={() => <CreateCamera /> } />
+                      <Route path="/update"         render={() => <UpdateCamera /> } />
+                      <Route path="/add"            render={() => <HandleAddCamera /> } />
+                      <Route path="/selectedCamera" render={() => <HandleUpdateCamera /> } />
+                      <Route path="/delete"         render={() => <HandleDeleteCamera /> } />
+                    </div>
+                  : ""
+                }
+              <Route component={PageNotFound} /> {/*only appears when no route matches*/}
 
-
-
-            <Route component={PageNotFound} /> {/*only appears when no route matches*/}
-
-          </Switch>
-
+            </Switch>
+        </div>
         </BrowserRouter>
 
         <div className="logIn-cont display-none">

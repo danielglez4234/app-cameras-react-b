@@ -10,14 +10,7 @@ body
   color: white !important;
 }
 
-#root{
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
+
 
 .overflow_scroll{overflow-y:scroll !important;}
 
@@ -71,6 +64,21 @@ body
 }
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
  */
+
+
+
+
+
+
+.container-box{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: -1;
+}
+
 .box-logo{
   position: absolute;
   width: 75px;
@@ -321,14 +329,14 @@ text-transform: uppercase;
   padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
-  flex: 1111;
+  flex: 999;
 }
 
 
 
 .rep_prub_cont{
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
   padding: 10px 0px 0px 20px;
   /* text-align: center; */
   /* text-align-last: center; */
