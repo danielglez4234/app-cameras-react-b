@@ -362,6 +362,7 @@ text-transform: uppercase;
   overflow: hidden;
   position: relative;
   text-align: center;
+  max-height: 354px;
 }
 
 .rep_prub-info{
