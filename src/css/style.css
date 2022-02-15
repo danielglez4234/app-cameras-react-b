@@ -364,6 +364,9 @@ text-transform: uppercase;
   text-align: center;
   max-height: 354px;
 }
+.rep_prub-height-fix{
+  max-height: 900px !important; 
+}
 
 .rep_prub-info{
   background-color: rgb(73 80 87 / 30%);
