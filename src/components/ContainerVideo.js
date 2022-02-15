@@ -51,7 +51,7 @@ class ContainerVideo extends Component {
     coverCamera = (id) =>{
       $('.rep_prub').toggle();
       $('.coverCameraButtonIcon').toggleClass('cover-rotate-when-clicked');
-      $('.rep_prub' + id).toggleClass('displayBlock width-height-1');
+      $('.rep_prub' + id).toggleClass('displayBlock width-height-1 rep_prub-height-fix');
       if ($(".pnc" + id).hasClass("panoramic")) {
         $('.rep_prub' + id).toggleClass('adjust-panoramic');
       }
